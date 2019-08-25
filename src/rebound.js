@@ -1,6 +1,12 @@
 import React, {Component} from 'react';
+import {init} from "./reboundHelper";
 
 class Rebound extends Component {
+    componentDidMount() {
+        window.addEventListener('load', init);
+        window.addEventListener('resize', init)
+    }
+
     render() {
         return (
             <div id="playingArea">
