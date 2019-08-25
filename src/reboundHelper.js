@@ -192,3 +192,22 @@ const hideSettings = () => {
     timer = requestAnimationFrame(start)
 };
 
+const setDifficulty = (diff) => {
+    switch (diff) {
+        case 0:
+            dy = 2;
+            pdx = 48;
+            break;
+        case 1:
+            dy = 4;
+            pdx = 32;
+            break;
+        case 2:
+            dy = 6;
+            pdx = 16;
+            break;
+        default:
+            dy = 2;
+            pdx = 48;
+    }
+};
