@@ -7,6 +7,8 @@ let controls;
 let newButton;
 let difficultySelect;
 let doneButton;
+let snd;
+let music;
 let aWidth;
 let aHeight;
 let pWidth;
@@ -20,6 +22,14 @@ let paddleLeft = 228;
 let ballLeft = 100;
 let ballTop = 8;
 let drag = false;
+let sndEnabled = false;
+let musicEnabled = false;
+
+let beepX;
+let beepY;
+let beepPaddle;
+let beepGameOver;
+let bgMusic;
 
 
 export const init = () => {
@@ -32,6 +42,8 @@ export const init = () => {
     newButton = document.getElementById('new');
     difficultySelect = document.getElementById('difficulty');
     doneButton = document.getElementById('done');
+    snd = document.getElementById('snd');
+    music = document.getElementById('music');
     layoutPage();
     document.addEventListener('keydown', keyListener, false);
 
