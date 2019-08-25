@@ -87,10 +87,7 @@ const detectCollisions = () => {
 };
 
 const collisionX = () => {
-    if (ballLeft < 4 || ballLeft > pWidth - 20) {
-        return true
-    }
-    return false;
+    return ballLeft < 4 || ballLeft > pWidth - 20;
 };
 
 const collisionY = () => {
@@ -103,4 +100,13 @@ const collisionY = () => {
         }
     }
     return false
+};
+
+const difficulty = () => {
+    if (currentScore % 1000 === 0) {
+        if (dy > 0)
+            dy += 2;
+        else
+            dy -= 2;
+    }
 };
