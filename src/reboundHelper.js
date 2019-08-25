@@ -14,7 +14,7 @@ let timer;
 let paddleLeft = 228;
 let ballLeft = 100;
 let ballTop = 8;
-
+var drag = false;
 
 
 export const init = () => {
@@ -22,8 +22,15 @@ export const init = () => {
     paddle = document.getElementById('paddle');
     score = document.getElementById('score');
     playingArea = document.getElementById('playingArea');
-    document.addEventListener('keydown', keyListener, false);
     layoutPage();
+    document.addEventListener('keydown', keyListener, false);
+
+    playingArea.addEventListener('mousedown', mouseDown, false);
+    playingArea.addEventListener('mousemove',mouseMove, false);
+    playingArea.addEventListener('mouseup',mouseUp,false);
+    playingArea.addEventListener('touchstart', mouseDown, false);
+    playingArea.addEventListener('touchmove',mouseMove, false);
+    playingArea.addEventListener('touchend',mouseUp,false);
     timer = requestAnimationFrame(start)
 };
 
@@ -114,6 +121,27 @@ const difficulty = () => {
 
 const gameOver = () => {
     cancelAnimationFrame(timer);
-    score.innerHTML += "     Game Over!";
+    score.innerHTML += '     Game Over!';
     score.style.backgroundColor = 'rgb(128,0,0)'
+};
+
+const mouseDown = (e) => {
+    drag = true;
+};
+
+const mouseUp = (e) => {
+    drag = false;
+};
+
+const mouseMove = (e) => {
+    if (drag) {
+        e.preventDefault();
+        paddleLeft = e.clientX - 32 || e.targetTouches[0].pageX - 32;
+        if (paddleLeft < 0) {
+            paddleLeft = 0;
+        }
+        if (paddleLeft > (pWidth - 64))
+            paddleLeft = pWidth - 64;
+        paddle.style.left = paddleLeft + 'px'
+    }
 };
