@@ -60,6 +60,8 @@ export const init = () => {
     difficultySelect.addEventListener('change', () => {
         setDifficulty(difficultySelect.selectedIndex)
     }, false);
+
+    snd.addEventListener('click', toggleSound, false);
     timer = requestAnimationFrame(start)
 };
 
@@ -124,11 +126,16 @@ const detectCollisions = () => {
 };
 
 const collisionX = () => {
-    return ballLeft < 4 || ballLeft > pWidth - 20;
+   if (ballLeft < 4 || ballLeft > pWidth - 20) {
+       playSound(beepX);
+       return true
+   }
+   return false
 };
 
 const collisionY = () => {
     if (ballTop < 4) {
+        playSound(beepY);
         return true
     }
     if (ballTop > pHeight - 64) {
@@ -140,18 +147,21 @@ const collisionY = () => {
                 dx = -2;
             else
                 dx = 2;
+            playSound(beepPaddle);
             return true;
         } else if (ballLeft >= paddleLeft && ballLeft < paddleLeft + 16) {
             if (dx < 0)
                 dx = -8;
             else
                 dx = 8;
+            playSound(beepPaddle);
             return true;
         } else if (ballLeft >= paddleLeft + 48 && ballLeft <= paddleLeft + 64) {
             if (dx < 0)
                 dx = -8;
             else
                 dx = 8;
+            playSound(beepPaddle);
             return true
         }
     }
@@ -171,6 +181,7 @@ const gameOver = () => {
     cancelAnimationFrame(timer);
     score.innerHTML += '     Game Over!';
     score.style.backgroundColor = 'rgb(128,0,0)'
+    playSound(beepGameOver);
 };
 
 const mouseDown = (e) => {
@@ -270,3 +281,16 @@ const initAudio = () => {
     beepGameOver.volume = 1;
     bgMusic.volume = 1;
 };
+
+const toggleSound = () => {
+    if (beepX === null) {
+        initAudio();
+    }
+    sndEnabled = !sndEnabled;
+};
+
+const playSound = (objSound) => {
+    if (sndEnabled)
+        objSound.play();
+
+}
