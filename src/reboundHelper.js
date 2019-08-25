@@ -76,3 +76,31 @@ const updateScore = () => {
     currentScore += 5;
     score.innerHTML = "Score: " + currentScore;
 };
+
+const detectCollisions = () => {
+    if (collisionX()){
+        dx *= -1;
+    }
+    if (collisionY()){
+        dy *= -1;
+    }
+};
+
+const collisionX = () => {
+    if (ballLeft < 4 || ballLeft > pWidth - 20) {
+        return true
+    }
+    return false;
+};
+
+const collisionY = () => {
+    if (ballTop < 4) {
+        return true
+    }
+    if (ballTop > pHeight - 64) {
+        if (ballLeft >= paddleLeft && ballLeft <= paddleLeft + 64) {
+            return true;
+        }
+    }
+    return false
+};
