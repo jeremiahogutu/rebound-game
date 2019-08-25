@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import {init} from "./reboundHelper";
 
 class Rebound extends Component {
@@ -9,13 +9,26 @@ class Rebound extends Component {
 
     render() {
         return (
-            <div id="playingArea">
-                <div id="paddle"></div>
-                <div id="ball"></div>
-                <div id="score">
-                    score: 0
+            <Fragment>
+                <div id="playingArea">
+                    <div id="paddle"></div>
+                    <div id="ball"></div>
+                    <div id="score">
+                        score: 0
+                    </div>
                 </div>
-            </div>
+                <div id="controls">
+                    <h3>settings</h3>
+                    <button id="new">New Game</button><br/>
+                    <select size="1" id="difficulty">
+                        <option>Easy</option>
+                        <option>Medium</option>
+                        <option>Hard</option>
+                    </select><br/>
+                    <button id="done">Done</button>
+                </div>
+                <button id="gear">&#9881;</button>
+            </Fragment>
         );
     }
 }
