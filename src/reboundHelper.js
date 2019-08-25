@@ -2,6 +2,11 @@ let ball;
 let paddle;
 let score;
 let playingArea;
+let gear;
+let controls;
+let newButton;
+let difficultySelect;
+let doneButton;
 let aWidth;
 let aHeight;
 let pWidth;
@@ -14,7 +19,7 @@ let timer;
 let paddleLeft = 228;
 let ballLeft = 100;
 let ballTop = 8;
-var drag = false;
+let drag = false;
 
 
 export const init = () => {
@@ -22,6 +27,11 @@ export const init = () => {
     paddle = document.getElementById('paddle');
     score = document.getElementById('score');
     playingArea = document.getElementById('playingArea');
+    gear = document.getElementById('gear');
+    controls = document.getElementById('controls');
+    newButton = document.getElementById('new');
+    difficultySelect = document.getElementById('difficulty');
+    doneButton = document.getElementById('done');
     layoutPage();
     document.addEventListener('keydown', keyListener, false);
 
