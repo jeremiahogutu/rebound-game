@@ -41,6 +41,13 @@ export const init = () => {
     playingArea.addEventListener('touchstart', mouseDown, false);
     playingArea.addEventListener('touchmove',mouseMove, false);
     playingArea.addEventListener('touchend',mouseUp,false);
+
+    gear.addEventListener('click', showSettings, false);
+    newButton.addEventListener('click', newGame, false);
+    doneButton.addEventListener('click', hideSettings, false);
+    difficultySelect.addEventListener('change', () => {
+        setDifficulty(difficultySelect.selectedIndex)
+    }, false);
     timer = requestAnimationFrame(start)
 };
 
@@ -174,3 +181,14 @@ const mouseMove = (e) => {
         paddle.style.left = paddleLeft + 'px'
     }
 };
+
+const showSettings = () => {
+    controls.style.display = 'block';
+    cancelAnimationFrame(timer);
+};
+
+const hideSettings = () => {
+    controls.style.display = 'none';
+    timer = requestAnimationFrame(start)
+};
+
