@@ -23,6 +23,7 @@ export const init = () => {
     score = document.getElementById('score');
     playingArea = document.getElementById('playingArea');
     document.addEventListener('keydown', keyListener, false);
+    layoutPage();
     timer = requestAnimationFrame(start)
 };
 
@@ -109,4 +110,10 @@ const difficulty = () => {
         else
             dy -= 2;
     }
+};
+
+const gameOver = () => {
+    cancelAnimationFrame(timer);
+    score.innerHTML += "     Game Over!";
+    score.style.backgroundColor = 'rgb(128,0,0)'
 };
