@@ -25,6 +25,13 @@ class Rebound extends Component {
                         <option>Medium</option>
                         <option>Hard</option>
                     </select><br/>
+                    <fieldset>
+                        <legend>sounds</legend>
+                        <input type="checkbox" id="snd"/>
+                        <label htmlFor="snd">Effect</label><br/>
+                        <input type="checkbox" id="music"/>
+                        <label htmlFor="music">Music</label><br/>
+                    </fieldset>
                     <button id="done">Done</button>
                 </div>
                 <button id="gear">&#9881;</button>

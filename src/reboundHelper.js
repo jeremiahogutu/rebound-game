@@ -211,3 +211,12 @@ const setDifficulty = (diff) => {
             pdx = 48;
     }
 };
+
+const newGame = () => {
+    ballTop = 8;
+    currentScore = 0;
+    dx = 2;
+    setDifficulty(difficultySelect.selectedIndex);
+    score.style.backgroundColor = 'rgb(32,128,64)';
+    hideSettings()
+};
