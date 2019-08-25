@@ -62,6 +62,7 @@ export const init = () => {
     }, false);
 
     snd.addEventListener('click', toggleSound, false);
+    music.addEventListener('click', toggleMusic, false);
     timer = requestAnimationFrame(start)
 };
 
@@ -248,8 +249,9 @@ const initAudio = () => {
     // load audio files
     beepX = new Audio('/beepX.mp3');
     beepY = new Audio('/beepY.mp3');
-    beepPaddle = new Audio('/beepGameOver.mp3');
-    bgMusic = new Audio('/music.mp3')
+    beepPaddle = new Audio('/beepPaddle.mp3');
+    beepGameOver = new Audio('/beepGameOver.mp3');
+    bgMusic = new Audio('/music.mp3');
 
     //turn off volume
     beepX.volume = 0;
@@ -283,7 +285,7 @@ const initAudio = () => {
 };
 
 const toggleSound = () => {
-    if (beepX === null) {
+    if (beepX == null) {
         initAudio();
     }
     sndEnabled = !sndEnabled;
@@ -293,4 +295,17 @@ const playSound = (objSound) => {
     if (sndEnabled)
         objSound.play();
 
-}
+};
+
+const toggleMusic = () => {
+    if (bgMusic == null) {
+        initAudio()
+    }
+    if (musicEnabled)
+        bgMusic.pause();
+    else {
+        bgMusic.loop = true;
+        bgMusic.play();
+    }
+    musicEnabled = !musicEnabled;
+};
