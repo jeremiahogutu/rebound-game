@@ -23,7 +23,7 @@ export const init = () => {
     score = document.getElementById('score');
     playingArea = document.getElementById('playingArea');
     document.addEventListener('keydown', keyListener, false);
-    layoutPage();
+    timer = requestAnimationFrame(start)
 };
 
 const layoutPage = () => {
@@ -48,3 +48,14 @@ const keyListener = (e) => {
     }
     paddle.style.left = paddleLeft + 'px';
 };
+
+const start = () => {
+    render();
+    detectCollisions();
+    difficulty();
+    if (ballTop < pHeight -36) {
+        timer = requestAnimationFrame(start)
+    } else {
+        gameOver();
+    }
+}
