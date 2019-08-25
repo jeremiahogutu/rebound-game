@@ -50,7 +50,7 @@ const keyListener = (e) => {
 };
 
 const start = () => {
-    render();
+    renderGame();
     detectCollisions();
     difficulty();
     if (ballTop < pHeight -36) {
@@ -58,4 +58,21 @@ const start = () => {
     } else {
         gameOver();
     }
-}
+};
+
+const renderGame = () => {
+    moveBall();
+    updateScore();
+};
+
+const moveBall = () => {
+    ballLeft += dx;
+    ballTop += dy;
+    ball.style.left = ballLeft + 'px';
+    ball.style.top = ballTop + 'px';
+};
+
+const updateScore = () => {
+    currentScore += 5;
+    score.innerHTML = "Score: " + currentScore;
+};
